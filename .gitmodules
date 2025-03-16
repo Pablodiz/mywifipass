@@ -1,0 +1,6 @@
+[submodule "django-x509"]
+	path = django-x509
+	url = https://github.com/Pablodiz/django-x509
+[submodule "getEAP_TLS_app"]
+	path = getEAP_TLS_app
+	url = https://github.com/Pablodiz/getEAP_TLS_app
