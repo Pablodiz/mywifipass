@@ -13,9 +13,11 @@ MyWifiPass addresses these challenges by providing an integrated solution that c
 - **Android App**: Automated configuration of networks in an Android app. 
 - **Network Management**: Integrations with OpenWISP for centralized access point configuration and monitoring.
 
+## The Wi-Fi Pass Concept
 
+MyWifiPass was designed around the scenario of event venues where secure networks must be deployed frequently. In these environments, users store their credentials as **"Wi-Fi passes"** - similar to event tickets, but containing digital certificates for network authentication.
 
-
+These Wi-Fi passes can be easily shared via QR codes and automatically configure user devices with all necessary certificates and network settings. This approach makes enterprise-grade wireless security accessible for temporary deployments while maintaining high security standards for events with strict requirements like voting or competitions.
 
 ## Parts 
 
