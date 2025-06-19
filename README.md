@@ -38,7 +38,7 @@ A comprehensive web application for managing Wi-Fi clients and networks. Key fea
 
 
 ### MyWifiPass Android
-**Repository**: [MyWifiPass-Android](https://github.com/Pablodiz/mywifipass_android)
+**Repository**: [mywifipass_android](https://github.com/Pablodiz/mywifipass_android)
 
 
 An Android application that simplifies the complex process of configuring EAP-TLS networks on mobile devices:
