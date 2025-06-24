@@ -1,4 +1,4 @@
-[submodule "django-x509"]
+[submodule "mywifipass_system"]
 	path = mywifipass
 	url = https://github.com/Pablodiz/mywifipass_system
 [submodule "mywifipass_android"]
