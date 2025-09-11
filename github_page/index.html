@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWifiPass redirection</title>
+</head>
+<body>
+    <div class="container">
+        <h1>MyWifiPass redirection</h1>
+
+        <div class="fallback">
+            <p><strong>If the redirection does not work automatically:</strong></p>
+            <p>Click the following link:</p>
+            <a href="#" id="fallbackLink" class="link">Open in MyWifiPass</a>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 14px; color: #666;">
+            If the link does not work, make sure you have the MyWifiPass app installed.
+        </p>
+    </div>
+
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        
+        // Obtain the parameter called 'url'
+        const downloadUrl = getUrlParameter('url');
+        
+        // Only if there is an url parameter
+        if (downloadUrl) {
+            // Encode the url to pass it as a parameter
+            const encodedUrl = encodeURIComponent(downloadUrl);
+            
+            // Build the complete link
+            const mywifipassLink = `mywifipass://download?url=${encodedUrl}`;
+            
+            // Update the fallback link
+            document.getElementById('fallbackLink').href = mywifipassLink;
+            
+            // Redirect when the page loads with the URL as a parameter
+            window.location.href = mywifipassLink;
+        } else {
+            // If there is no url parameter, hide the fallback link and show a message
+            document.getElementById('fallbackLink').style.display = 'none';
+            document.querySelector('.fallback p:first-child').innerHTML = '<strong>No URL provided for processing.</strong>';
+            document.querySelector('.fallback p:nth-child(2)').innerHTML = 'Use: <code>index.html?url=YOUR_URL_HERE</code>';
+            console.log('No URL parameter provided');
+        }
+    </script>
+</body>
+</html>
