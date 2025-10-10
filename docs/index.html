@@ -139,7 +139,6 @@
             background-color: var(--secondary-color);
             padding: 1.5rem;
             border-radius: 8px;
-            margin-bottom: 2rem;
             text-align: center;
         }
 
@@ -289,6 +288,39 @@
         .steps a:hover {
             text-decoration: underline;
         }
+        /* Styles for install-section extracted from inline styles */
+        .install-section {
+            margin: 18px auto;
+            padding: 12px;
+            border-radius: var(--card-border-radius);
+            background-color: #f0fbfa;
+            width: 100%;
+            max-width: 560px;
+            box-sizing: border-box;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .install-section h3 {
+            margin: 0 0 8px 0;
+            text-transform: none;
+            color: var(--primary-color);
+        }
+
+        .install-section p {
+            margin: 0 0 12px 0;
+            color: #333;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
         /* Mobile responsive */
         @media only screen and (max-width: 600px) {
@@ -378,12 +410,7 @@
                     </a>
                 </div>
 
-                <div class="info-box">
-                    <p>
-                        <strong>Nota importante:</strong>
-                        Asegúrate de tener la aplicación MyWifiPass instalada en tu dispositivo. Si no la tienes, descárgala desde tu tienda de aplicaciones.
-                    </p>
-                </div>
+
             </div>
 
             <!-- Error State (hidden by default) -->
@@ -394,13 +421,12 @@
                     <p>Para usar esta página, debes proporcionar un parámetro URL:</p>
                     <p><code>index.html?url=TU_URL_AQUI</code></p>
                 </div>
+            </div>
 
-                <div class="info-box">
-                    <p>
-                        <strong>Ejemplo de uso:</strong>
-                        index.html?url=https://ejemplo.com/archivo.mobileconfig
-                    </p>
-                </div>
+            <div class="install-section">
+                <h3>📱 ¿Aún no tienes la aplicación MyWifiPass?</h3>
+                <p>Descárgala para poder conectarte al evento y gestionar tu pase desde el móvil.</p>
+                <a href="{{ playstore_url }}" class="download-btn">Descargar en Google Play</a>
             </div>
         </div>
     </main>
