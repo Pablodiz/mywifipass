@@ -445,6 +445,9 @@
         // Obtain the parameter called 'url'
         const downloadUrl = getUrlParameter('url');
         
+        // Obtain the parameter called 'playstore_url'
+        const playstoreUrl = getUrlParameter('playstore_url') || 'https://play.google.com/store/apps/details?id=app.mywifipass';
+        
         // Get DOM elements
         const successState = document.getElementById('successState');
         const errorState = document.getElementById('errorState');
