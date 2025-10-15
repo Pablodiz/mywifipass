@@ -426,7 +426,11 @@
             <div class="install-section">
                 <h3>📱 ¿Aún no tienes la aplicación MyWifiPass?</h3>
                 <p>Descárgala para poder conectarte al evento y gestionar tu pase desde el móvil.</p>
-                <a href="{{ playstore_url }}" class="download-btn">Descargar en Google Play</a>
+                <a href="https://play.google.com/store/apps/details?id=app.mywifipass" target="_blank">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" 
+                    alt="Disponible en Google Play" 
+                    width="200" />
+                </a>
             </div>
         </div>
     </main>
@@ -440,9 +444,6 @@
         
         // Obtain the parameter called 'url'
         const downloadUrl = getUrlParameter('url');
-        
-        // Obtain the parameter called 'playstore_url'
-        const playstoreUrl = getUrlParameter('playstore_url') || 'https://play.google.com/store/apps/details?id=com.mywifipass';
         
         // Get DOM elements
         const successState = document.getElementById('successState');
