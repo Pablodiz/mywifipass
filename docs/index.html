@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<!-- 
+    MyWifiPass Redirect Page
+    BSD 3-Clause License
+    Copyright (c) 2025, Pablo Diz de la Cruz
+    Repository: https://github.com/Pablodiz/mywifipass/
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice, this
+       list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
+       and/or other materials provided with the distribution.
+
+    3. Neither the name of the copyright holder nor the names of its
+       contributors may be used to endorse or promote products derived from
+       this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+    OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWifiPass - Redirección</title>
+    <meta name="license" content="BSD 3-Clause License">
+    <meta name="author" content="Pablo Diz de la Cruz">
+    <meta name="repository" content="https://github.com/Pablodiz/mywifipass/">
+
+    <!-- Favicon support with multiple formats -->
+    <link rel="icon" href="MyWifiPass_logo.png">
+    
+    <style>
+        :root {
+            --primary-color: #006A71;
+            --secondary-color: #9ACBD0;
+            --tertiary-color: #48A6A7;
+            --background-color: #F2EFE7;
+            --hover-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            --card-border-radius: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--background-color);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .card {
+            background: white;
+            max-width: 600px;
+            width: 100%;
+            padding: 3rem;
+            border-radius: var(--card-border-radius);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--secondary-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--tertiary-color);
+            font-size: 1rem;
+        }
+
+        .status-message {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .status-message p {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--background-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fallback-section {
+            background-color: var(--background-color);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .fallback-section h2 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fallback-section p {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .my-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .my-button:hover {
+            background-color: var(--tertiary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 106, 113, 0.3);
+        }
+
+        .info-box {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .info-box p {
+            color: #856404;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .error-state {
+            display: none;
+        }
+
+        .error-state.active {
+            display: block;
+        }
+
+        .success-state {
+            display: block;
+        }
+
+        .success-state.hidden {
+            display: none;
+        }
+
+        code {
+            background-color: var(--secondary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary-color);
+        }
+
+        .steps {
+            margin: 18px auto;
+            padding: 14px;
+            border-radius: 10px;
+            background-color: #f0fbfa;
+            width: 100%;
+            max-width: 560px;
+            box-sizing: border-box;
+        }
+
+        .steps h3 {
+            margin: 0 0 8px 0;
+            color: #006A71;
+            text-align: center;
+        }
+
+        .steps ol {
+            margin: 8px 0 0 18px;
+            padding: 0;
+            color: #333;
+        }
+
+        .steps ol li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .steps a {
+            display: inline-block;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .steps a:hover {
+            text-decoration: underline;
+        }
+        /* Styles for install-section extracted from inline styles */
+        .install-section {
+            margin: 18px auto;
+            padding: 12px;
+            border-radius: var(--card-border-radius);
+            background-color: #f0fbfa;
+            width: 100%;
+            max-width: 560px;
+            box-sizing: border-box;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .install-section h3 {
+            margin: 0 0 8px 0;
+            text-transform: none;
+            color: var(--primary-color);
+        }
+
+        .install-section p {
+            margin: 0 0 12px 0;
+            color: #333;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* Mobile responsive */
+        @media only screen and (max-width: 600px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .fallback-section {
+                padding: 1.5rem;
+            }
+
+            .my-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="MyWifiPass_logo.png" alt="MyWifiPass Logo">
+                </div>
+                MyWifiPass
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔗</div>
+                <h1>Redirección a MyWifiPass</h1>
+                <p class="subtitle">Abriendo la aplicación...</p>
+            </div>
+
+            <!-- Success State (shown by default) -->
+            <div id="successState" class="success-state">
+                <div class="status-message">
+                    <p>Redirigiendo automáticamente</p>
+                    <div class="spinner"></div>
+                    <p style="font-weight: normal; font-size: 0.9rem;">Por favor, espera un momento</p>
+                </div>
+
+                <div class="steps">
+                    <h3>Pasos para conectarte:</h3>
+                    <ol>
+                        <li>Instala la aplicación <a href="#" id="playstoreLink">MyWifiPass</a> en tu móvil</li>
+                        <li>Abre la app y escanea el código QR o pulsa el enlace para descargar tu pase Wi-Fi</li>
+                        <li>En caso de ser necesario, al llegar al evento, muestra tu pase Wi-Fi a un validador</li>
+                        <li>Conéctate automáticamente a la red Wi‑Fi del evento</li>
+                    </ol>
+                </div>
+
+                <div class="fallback-section">
+                    <h2>¿No funcionó la redirección?</h2>
+                    <p>Si la aplicación no se abrió automáticamente, haz clic en el siguiente botón:</p>
+                    <a href="#" id="fallbackLink" class="my-button">
+                        Abrir en MyWifiPass
+                    </a>
+                </div>
+
+
+            </div>
+
+            <!-- Error State (hidden by default) -->
+            <div id="errorState" class="error-state">
+                <div class="fallback-section">
+                    <h2>No se proporcionó URL</h2>
+                    <p><strong>No se encontró ninguna URL para procesar.</strong></p>
+                    <p>Para usar esta página, debes proporcionar un parámetro URL:</p>
+                    <p><code>index.html?url=TU_URL_AQUI</code></p>
+                </div>
+            </div>
+
+            <div class="install-section">
+                <h3>📱 ¿Aún no tienes la aplicación MyWifiPass?</h3>
+                <p>Descárgala para poder conectarte al evento y gestionar tu pase desde el móvil.</p>
+                <a href="https://play.google.com/store/apps/details?id=app.mywifipass" target="_blank">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" 
+                    alt="Disponible en Google Play" 
+                    width="200" />
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        
+        // Obtain the parameter called 'url'
+        const downloadUrl = getUrlParameter('url');
+        
+        // Obtain the parameter called 'playstore_url'
+        const playstoreUrl = getUrlParameter('playstore_url') || 'https://play.google.com/store/apps/details?id=app.mywifipass';
+        
+        // Get DOM elements
+        const successState = document.getElementById('successState');
+        const errorState = document.getElementById('errorState');
+        const fallbackLink = document.getElementById('fallbackLink');
+        const playstoreLink = document.getElementById('playstoreLink');
+        
+        // Set playstore link
+        playstoreLink.href = playstoreUrl;
+        
+        // Only if there is a url parameter
+        if (downloadUrl) {
+            // Encode the url to pass it as a parameter
+            const encodedUrl = encodeURIComponent(downloadUrl);
+            
+            // Build the complete link
+            const mywifipassLink = `mywifipass://download?url=${encodedUrl}`;
+            
+            // Update the fallback link
+            fallbackLink.href = mywifipassLink;
+            
+            // Log for debugging
+            console.log('Redirecting to:', mywifipassLink);
+            console.log('Original URL:', downloadUrl);
+            
+            // Redirect when the page loads with the URL as a parameter
+            // Small delay to ensure the page is fully loaded
+            setTimeout(() => {
+                window.location.href = mywifipassLink;
+            }, 500);
+            
+            // Show success state
+            successState.classList.remove('hidden');
+            errorState.classList.remove('active');
+            
+        } else {
+            // If there is no url parameter, show error state
+            successState.classList.add('hidden');
+            errorState.classList.add('active');
+            console.log('No URL parameter provided');
+        }
+    </script>
+</body>
+    <footer style="
+        text-align: center;
+        font-size: 0.85rem;
+        color: #555;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-top: 1px solid #ddd;
+    ">
+        © 2025 Pablo Diz de la Cruz — 
+        <a href="https://github.com/Pablodiz/mywifipass/" target="_blank" style="color:#006A71;text-decoration:none;font-weight:bold;">
+            GitHub
+        </a> · 
+        <a href="https://opensource.org/license/bsd-3-clause/" target="_blank" style="color:#006A71;text-decoration:none;font-weight:bold;">
+            BSD 3-Clause License
+        </a>
+    </footer>
+</html>

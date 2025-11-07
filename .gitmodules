@@ -1,5 +1,5 @@
 [submodule "mywifipass_system"]
-	path = mywifipass
+	path = mywifipass_system
 	url = https://github.com/Pablodiz/mywifipass_system
 [submodule "mywifipass_android"]
 	path = mywifipass_android
